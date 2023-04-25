@@ -1,0 +1,46 @@
+.carousel_wrapper {
+    .poster_link {
+        text-decoration: none;
+        color: white;
+
+        .carousel_img {
+            height: 600px;
+
+            img {
+                margin: auto;
+                display: block;
+                width: 100%;
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 5rem;
+            bottom: 0px;
+            height: 70%;
+            width: 100%;
+            opacity: 1;
+            transition: opacity 0.3s;
+            .poster_text{
+                p{
+                    font-weight: 900;
+                    font-size: 4rem;
+                    margin-bottom: 0.4rem;
+                    text-align: left;
+                }
+            }
+
+            .description {
+                display: flex;
+                text-align: left;
+                width: 50%;
+            }
+        }
+
+
+    }
+}

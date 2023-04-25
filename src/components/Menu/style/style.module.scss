@@ -1,0 +1,46 @@
+.menu_wrapper {
+    display: flex;
+    padding: 10px;
+
+    .img_logo {
+        padding-left: 30px;
+
+        img {
+            width: 80px;
+        }
+    }
+
+    .menu_ul {
+        display: flex;
+        align-items: center;
+
+        a {
+            color: #fff;
+         text-decoration: none;
+            li {
+                display: table-cell;
+                position: relative;
+                list-style: none;
+                padding: 10px 20px;
+
+                &:hover:after {
+                    width: 100%;
+                    left: 0;
+                }
+
+                &:after {
+                    background: none repeat scroll 0 0 transparent;
+                    bottom: 0;
+                    content: "";
+                    display: block;
+                    height: 2px;
+                    left: 50%;
+                    position: absolute;
+                    background: #fff;
+                    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                    width: 0;
+                }
+            }
+        }
+    }
+}
