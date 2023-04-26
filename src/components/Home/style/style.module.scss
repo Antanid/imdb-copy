@@ -25,12 +25,21 @@
             width: 100%;
             opacity: 1;
             transition: opacity 0.3s;
-            .poster_text{
-                p{
+
+            .poster_text {
+                p {
                     font-weight: 900;
                     font-size: 4rem;
                     margin-bottom: 0.4rem;
                     text-align: left;
+                }
+            }
+
+            .vote_data {
+                display: flex;
+                margin-bottom: 1rem;
+                .data {
+                    margin-right: 3rem;
                 }
             }
 

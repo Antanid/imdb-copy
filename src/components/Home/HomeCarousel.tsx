@@ -1,10 +1,10 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
-import { Link } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import style from "./style/style.module.scss";
 
-type CarouselProps = {
+
+ type CarouselProps = {
   movie: {
     adult: boolean;
     backdrop_path: string;
@@ -23,7 +23,25 @@ type CarouselProps = {
   }[];
 };
 
+export type itemMapProps = {
+  adult: boolean;
+    backdrop_path: string;
+    genre_ids: number[];
+    id: number;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
+}
+
 const HomeCarousel: React.FC<CarouselProps> = ({ movie }) => {
+  
   return (
     <div className={style.carousel_wrapper}>
       <Carousel
@@ -34,7 +52,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({ movie }) => {
         transitionTime={3}
       >
         {movie &&
-          movie.map((item) => (
+          movie.map((item: itemMapProps) => (
             <div className={style.poster_link} key={item.id}>
               <div className={style.carousel_img}>
                 <img
@@ -50,7 +68,11 @@ const HomeCarousel: React.FC<CarouselProps> = ({ movie }) => {
 
                 <div className={style.vote_data}>
                   <p className={style.data}>{item.release_date}</p>
-                  <p className={style.vote}>{item.vote_average}</p>
+                  <p className={style.vote}>
+                    {item.vote_average}
+                    <span> ★</span>
+                  </p>
+            
                 </div>
 
                 <div className={style.description}>

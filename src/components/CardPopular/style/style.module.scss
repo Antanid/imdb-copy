@@ -1,0 +1,87 @@
+.movieList {
+    padding: 50px;
+
+    .header_title {
+        margin: 40px;
+
+        h2 {
+            font-size: 25px;
+        }
+    }
+
+    .list_cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        cursor: pointer;
+        .cards {
+            display: inline-block;
+            position: relative;
+            border-radius: 10px;
+            transition: transform 0.2s;
+
+            .card_img {
+                border-radius: 10px;
+                height: 300px;
+                overflow: hidden;
+                cursor: pointer;
+                min-width: 200px;
+                height: 300px;
+                z-index: 0;
+                border: 1px solid rgb(99, 99, 99);
+            }
+
+            .cards_overlay {
+                position: absolute;
+                height: 290px;
+                width: 85%;
+                bottom: 0px;
+                padding: 15px;
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+                opacity: 0;
+                transition: opacity 0.2s;
+                background-image: linear-gradient(rgba(0, 0, 0, 0.147), rgb(0,0,0));
+                .title {
+                    margin-bottom: 7px;
+
+                    .title_p {
+                        font-weight: 900;
+                        font-size: 17px;
+                    }
+                }
+
+                .data_vote {
+                    display: inline-block;
+                    font-size: 12px;
+                    margin-bottom: 0.25rem;
+
+                    .data {
+                        display: inline-block;
+                    }
+
+                    .vote {
+                        float: right;
+                    }
+                }
+
+                .description {
+                    font-size: 0.75rem;
+                    margin-bottom: 0.25rem;
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            &:hover {
+                transform: scale(1.2);
+                z-index: 1000;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            }
+        }
+    }
+
+}
