@@ -2,14 +2,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from 'react-redux'
 import PopularFilm from './PopularFilmSlice'
 import UpcomingFilm from "./UpcomingFilmSlice";
-import TopRated from './TopRatedSlice'
+import TopRated from './TopRatedSlice';
+import SingleMovie from './SingleMovieSlice';
 
 
 export const store = configureStore({
     reducer: {
         PopularFilm,
         UpcomingFilm,
-        TopRated
+        TopRated,
+        SingleMovie
     }
 })
 

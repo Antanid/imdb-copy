@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import style from "./style/style.module.scss";
 
 
- type CarouselProps = {
+ export type CarouselProps = {
   movie: {
     adult: boolean;
     backdrop_path: string;

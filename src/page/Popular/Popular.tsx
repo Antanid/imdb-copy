@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import CardPopular from "../../components/CardPopular/CardPopular";
 import { addMovie, setMovie } from "../../redux/PopularFilmSlice";
 
-
 const Popular = () => {
   const [Loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -25,10 +24,11 @@ const Popular = () => {
     getApi();
   }, [dispatch]);
 
+
   const movieRedux = useSelector(setMovie);
   return (
-    <div> 
-        <CardPopular title="POPULAR" movieRedux={movieRedux} isLoading={Loading}/>
+    <div>
+      <CardPopular title="POPULAR" movieRedux={movieRedux} Loading={Loading} />
     </div>
   );
 };

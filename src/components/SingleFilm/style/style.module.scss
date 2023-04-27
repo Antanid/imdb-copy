@@ -1,0 +1,184 @@
+.movie {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .movie_back {
+        width: 100%;
+
+        .back_img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: 0 35%;
+        }
+    }
+
+    .movie_detail {
+        align-items: center;
+        width: 75%;
+        display: flex;
+        position: relative;
+        bottom: 225px;
+
+        .detail_Left {
+            margin-right: 35px;
+
+            .posterBox {
+                .poster_img {
+                    width: 300px;
+                    border-radius: 10px;
+                    box-shadow: rgba(0, 0, 0, 0.86) 0px 22px 40px 6px;
+                }
+            }
+        }
+
+        .movie_Right {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 450px;
+            justify-content: space-between;
+
+            .movie_detailInfoTop {
+                text-shadow: 0px 0px 5px #0000;
+
+                .movie_name {
+                    p {
+                        font-weight: 600;
+                        font-size: 3rem;
+                    }
+                }
+
+                .movie_tagline {
+                    margin: 3px 0;
+                }
+
+                .movie_rating {
+                    display: inline-flex;
+
+                    .vote_count {
+                        margin-left: 1.25rem;
+                    }
+                }
+
+                .movie_runtime {
+                    p {
+                        margin: 2px 0;
+                    }
+                }
+
+                .movie_genres {
+                    margin: 1.25rem 0;
+                    display: flex;
+
+                    .movie_genre_list {
+                        border: 2px solid #ffff;
+                        border-radius: 20px;
+                        padding: 0.5rem;
+                        margin-right: 15px;
+                    }
+                }
+            }
+
+            .movie_overview {
+                margin: 2rem 0;
+                flex: 0.8;
+
+                h3 {
+                    font-weight: 600;
+                    font-size: 20px;
+                    margin-bottom: 1.25rem;
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    .movie_links {
+        position: relative;
+        bottom: 120px;
+        display: flex;
+        justify-content: space-between;
+        width: 75%;
+
+        .links_header {
+            h5 {
+                font-size: 2.2rem;
+            }
+        }
+
+        .button_homepage {
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 150px;
+            background-color: rgb(255, 0, 0);
+
+            a {
+                display: flex;
+                color: black;
+                font-weight: 900;
+                text-decoration: none;
+
+                img {
+                    padding-left: 10px;
+                    width: 15px;
+                }
+            }
+        }
+
+        .button_imdb {
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 150px;
+            background-color: #f3ce13;
+
+            a {
+                display: flex;
+                color: black;
+                font-weight: 900;
+                text-decoration: none;
+
+                img {
+                    padding-left: 10px;
+                    width: 15px;
+                }
+            }
+        }
+
+        .production_header {
+            font-size: 2.2rem;
+        }
+    }
+    .movie_production {
+        width: 85%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 4rem;
+        .production_company{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .production_img_company{
+                width: 200px;
+                margin: 2rem;
+            }
+        }
+    }
+}
