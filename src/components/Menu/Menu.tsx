@@ -12,11 +12,15 @@ const Menu: React.FC = () => {
     },
     {
       title: "Top Rated",
-      path: "top-rated",
+      path: "top_rated",
     },
     {
       title: "Upcoming",
       path: "upcoming",
+    },
+    {
+      title: "Search",
+      path: "search",
     },
   ]);
   return (

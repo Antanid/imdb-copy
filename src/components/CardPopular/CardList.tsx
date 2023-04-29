@@ -12,6 +12,7 @@ type CardlistProps = {
   Loading: boolean;
   onAddFilm: (id: number) => void;
   id: number;
+  NoImg: string
 };
 
 const CardList: React.FC<CardlistProps> = ({
@@ -23,6 +24,7 @@ const CardList: React.FC<CardlistProps> = ({
   Loading,
   onAddFilm,
   id,
+  NoImg
 }) => {
   return (
     <>
@@ -33,7 +35,7 @@ const CardList: React.FC<CardlistProps> = ({
         <div className={style.cards} onClick={() => onAddFilm(id)}>
           <img
             className={style.card_img}
-            src={`https://image.tmdb.org/t/p/original${poster}`}
+            src={poster ? `https://image.tmdb.org/t/p/original${poster}` : NoImg}
             alt="poster_img"
           />
 

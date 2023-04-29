@@ -4,14 +4,15 @@ import PopularFilm from './PopularFilmSlice'
 import UpcomingFilm from "./UpcomingFilmSlice";
 import TopRated from './TopRatedSlice';
 import SingleMovie from './SingleMovieSlice';
-
+import SearchSlice from './SearchSlice'
 
 export const store = configureStore({
     reducer: {
         PopularFilm,
         UpcomingFilm,
         TopRated,
-        SingleMovie
+        SingleMovie,
+        SearchSlice
     }
 })
 

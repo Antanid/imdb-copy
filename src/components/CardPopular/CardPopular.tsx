@@ -6,6 +6,7 @@ import style from "./style/style.module.scss";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch } from "react-redux";
 import { addID } from "../../redux/SingleMovieSlice";
+import NoImg from "../../assets/img/No-Image.png";
 
 type PopularTypeProps = {
   movieRedux: {
@@ -36,10 +37,11 @@ const CardPopular: React.FC<PopularTypeProps> = ({ movieRedux, title, Loading })
   return (
     <div className={style.movieList}>
       <CardTitle title={title} />
-
       <div className={style.list_cards}>
         {movieRedux.map((item: itemMapProps) => (
           <CardList
+            NoImg={NoImg}
+            key={item.id}
             onAddFilm={onAddFilm}
             id={item.id}
             Loading={Loading}

@@ -38,6 +38,7 @@
             .vote_data {
                 display: flex;
                 margin-bottom: 1rem;
+
                 .data {
                     margin-right: 3rem;
                 }
@@ -50,6 +51,60 @@
             }
         }
 
+        @media (max-width: 920px) {
+            .overlay {
+                padding: 7rem;
+            }
+        }
 
+        @media (max-width: 870px) {
+            .carousel_img {
+                height: 100%;
+            }
+
+            .overlay {
+                padding: 1rem;
+
+                .poster_text {
+                    p {
+                        font-size: 2rem;
+                    }
+                }
+
+            }
+        }
+
+        @media (max-width: 690px) {
+            .overlay {
+                .description {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        @media (max-width: 590px) {
+            .overlay {
+                .description {
+                    font-size: 0;
+                }
+
+                .poster_text {
+                    p {
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            @media (max-width: 590px) {
+                .overlay {}
+            }
+        }
+        @media (max-width: 480px) {
+            .overlay {
+                padding: 2rem;
+            }
+        }
     }
+
+
 }
