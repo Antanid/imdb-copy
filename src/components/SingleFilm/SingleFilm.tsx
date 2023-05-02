@@ -6,6 +6,7 @@ import MovieRight from "./MovieRight";
 import PosterImg from "./PosterImg";
 import style from "./style/style.module.scss";
 import TextProduction from "./TextProduction";
+import linkImg from "../../assets/img/linkImg.png";
 
 type SingleFilmProps = {
   backdrop_path: string;
@@ -68,6 +69,7 @@ const SingleFilm: React.FC<SingleFilmProps> = ({
         />
       </div>
       <MovieLinks
+        linkImg={linkImg}
         IMDbText="IMDb"
         HomepageText="Homepage"
         linkText="Useful Links"

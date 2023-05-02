@@ -6,7 +6,8 @@ type LinksProps = {
     imdb_id: string;
     linkText: string;
     HomepageText: string;
-    IMDbText: string
+    IMDbText: string;
+    linkImg: string
 };
 
 const MovieLinks: React.FC <LinksProps> = ({
@@ -14,7 +15,8 @@ const MovieLinks: React.FC <LinksProps> = ({
     imdb_id,
     linkText,
     HomepageText,
-    IMDbText
+    IMDbText,
+    linkImg
 }) => {
   return (
     <div className={style.movie_links}>
@@ -26,7 +28,7 @@ const MovieLinks: React.FC <LinksProps> = ({
           <button className={style.button_homepage}>
             {HomepageText}
             <img
-              src="https://cdn.icon-icons.com/icons2/936/PNG/512/external-link-symbol_icon-icons.com_73577.png"
+              src={linkImg}
               alt="homepage img"
             />
           </button>
@@ -43,7 +45,7 @@ const MovieLinks: React.FC <LinksProps> = ({
           <button className={style.button_imdb}>
             {IMDbText}
             <img
-              src="https://cdn.icon-icons.com/icons2/936/PNG/512/external-link-symbol_icon-icons.com_73577.png"
+              src={linkImg}
               alt="imdb_id search_img"
             />
           </button>

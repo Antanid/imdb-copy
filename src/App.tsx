@@ -14,9 +14,9 @@ function App() {
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path=":popular" element={<Popular />} />
-        <Route path=":upcoming" element={<Upcoming />} />
-        <Route path=":top_rated" element={<TopRated />} />
+        <Route path="popular" element={<Popular />} />
+        <Route path="upcoming" element={<Upcoming />} />
+        <Route path="top_rated" element={<TopRated />} />
         <Route path="movies/:id" element={<Movie />} />
         <Route path="search" element={<Search />} />
       </Routes>
