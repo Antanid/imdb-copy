@@ -14,6 +14,9 @@ import {
 import CardPopular from "../CardPopular/CardPopular";
 import searchImg from "../../assets/img/search.png";
 import style from "./style/style.module.scss";
+import InputSearch from "./InputSearch";
+import ButtonControl from "./ButtonControl";
+import TotalPage from "./TotalPage";
 
 const SearchComp: React.FC = () => {
   const [input, setInput] = useState("");
@@ -29,19 +32,19 @@ const SearchComp: React.FC = () => {
           input ? input : "Batman"
         }&api_key=4e44d9029b1270a757cddc766a1bcb63&page=${page}`
       );
-      console.log(data);
       dispatch(searchResult(data.results));
       dispatch(setPage(data.page));
       dispatch(setTotalPage(data.total_pages));
     };
     setLoading(false);
     getApi();
-  }, [searh, page]);
+  }, [searh, page, dispatch]);
   const onChangeInput = (e: React.ChangeEvent<any>) => {
     setInput(e.target.value);
     e.preventDefault();
   };
   const onSearch = () => {
+    dispatch(setPage(1))
     setSearch(!searh);
   };
   const onNextPage = () => {
@@ -50,37 +53,28 @@ const SearchComp: React.FC = () => {
   const onPrevPage = () => {
     dispatch(prevPage());
   };
+  const onKeySearch = (event: any) => {
+    if (event.key === "Enter") {
+      onSearch();
+      dispatch(setPage(1))
+    }
+  };
   const data = useSelector(setResult);
   const totalPageNum = useSelector(totalPage);
 
   return (
     <div className={style.search_wrapper}>
-      <div className={style.input_search_block}>
-        <input
-          className={style.input_search}
-          value={input}
-          onChange={onChangeInput}
-          placeholder="Batman"
-        />
-        <button className={style.button_search} onClick={onSearch}>
-          <img src={searchImg} alt="searchButton" />
-        </button>
-      </div>
-      <div>
-        <CardPopular movieRedux={data} title="SEARCH" Loading={Loading} />
-      </div>
-      <div className={style.contol_panel}>
-        <button className={style.button_page} onClick={onPrevPage}>
-          PREV
-        </button>
-        <p className={style.page_number}> {page}</p>
-        <button className={style.button_page} onClick={onNextPage}>
-          NEXT
-        </button>
-      </div>
-      <div className={style.totalPage}>
-        <h5>Total page: {totalPageNum}</h5>
-      </div>
+      <InputSearch
+        searchImg={searchImg}
+        onSearch={onSearch}
+        onChangeInput={onChangeInput}
+        input={input}
+        onKeySearch={onKeySearch}
+      />
+
+      <CardPopular movieRedux={data} title="SEARCH" Loading={Loading} />
+      <ButtonControl onNextPage={onNextPage} page={page} onPrevPage={onPrevPage} />
+      <TotalPage totalPageNum={totalPageNum} />
     </div>
   );
 };

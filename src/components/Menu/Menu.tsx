@@ -3,6 +3,7 @@ import IMDB_logo from "../../assets/img/IMDB_Logo.png";
 import MenuImg from "./MenuImg";
 import MenuLi from "./MenuLi";
 import style from "./style/style.module.scss";
+import iconBurger from "../../assets/img/icon_burger.png";
 
 const Menu: React.FC = () => {
   const [menuLi] = useState([
@@ -23,11 +24,14 @@ const Menu: React.FC = () => {
       path: "search",
     },
   ]);
+  const [Open, isOpen] = useState(false);
+  const burgerOpen = () => {
+    isOpen((prev) => !prev);
+  };
   return (
     <div className={style.menu_wrapper}>
-    
-      <MenuImg IMDB_logo={IMDB_logo}/>
-      <MenuLi menuLi={menuLi} />
+      <MenuImg IMDB_logo={IMDB_logo} />
+      <MenuLi burgerOpen={burgerOpen} Open={Open} iconBurger={iconBurger} menuLi={menuLi} />
     </div>
   );
 };
