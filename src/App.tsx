@@ -8,6 +8,7 @@ import Search from "./page/Search";
 import TopRated from "./page/TopRated";
 import Upcoming from "./page/Upcoming";
 
+
 function App() {
   return (
     <div className="wrapper">

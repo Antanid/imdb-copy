@@ -17,6 +17,7 @@ import style from "./style/style.module.scss";
 import InputSearch from "./InputSearch";
 import ButtonControl from "./ButtonControl";
 import TotalPage from "./TotalPage";
+import { selectedLanguage } from "../../redux/ChangeLanguageSlice";
 
 const SearchComp: React.FC = () => {
   const [input, setInput] = useState("");
@@ -24,13 +25,14 @@ const SearchComp: React.FC = () => {
   const [Loading, setLoading] = useState(true);
   const page = useSelector(setPageNum);
   const dispatch = useDispatch();
+  const language = useSelector(selectedLanguage)
   useEffect(() => {
     setLoading(true);
     const getApi = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/search/movie?query=${
           input ? input : "Batman"
-        }&api_key=4e44d9029b1270a757cddc766a1bcb63&page=${page}`
+        }&api_key=4e44d9029b1270a757cddc766a1bcb63&language=${language}&page=${page}`
       );
       dispatch(searchResult(data.results));
       dispatch(setPage(data.page));
@@ -38,7 +40,7 @@ const SearchComp: React.FC = () => {
     };
     setLoading(false);
     getApi();
-  }, [searh, page, dispatch]);
+  }, [searh, page, dispatch, language]);
   const onChangeInput = (e: React.ChangeEvent<any>) => {
     setInput(e.target.value);
     e.preventDefault();

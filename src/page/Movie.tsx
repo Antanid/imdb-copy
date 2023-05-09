@@ -7,18 +7,20 @@ import SingleFilm from "../components/SingleFilm/SingleFilm";
 import { addSingleFilm, setSingleMovie } from "../redux/SingleMovieSlice";
 import backMovieImg from "../assets/img/back_movie.jpeg";
 import noImg from "../assets/img/No-Image.png";
+import { selectedLanguage } from "../redux/ChangeLanguageSlice";
 
 const Movie = () => {
   const { id } = useParams();
   const [Loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const language = useSelector(selectedLanguage)
 
   useEffect(() => {
     const getApi = async (id: string | undefined) => {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=${language}`
         );
         dispatch(addSingleFilm(data));
         setLoading(false);
@@ -28,7 +30,7 @@ const Movie = () => {
     };
 
     getApi(id);
-  }, [dispatch, id]);
+  }, [dispatch, id, language]);
   const {
     backdrop_path,
     poster_path,

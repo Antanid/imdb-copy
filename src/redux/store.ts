@@ -4,7 +4,8 @@ import PopularFilm from './PopularFilmSlice'
 import UpcomingFilm from "./UpcomingFilmSlice";
 import TopRated from './TopRatedSlice';
 import SingleMovie from './SingleMovieSlice';
-import SearchSlice from './SearchSlice'
+import SearchSlice from './SearchSlice';
+import ChangeLanguageSlice from './ChangeLanguageSlice'
 
 export const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
         UpcomingFilm,
         TopRated,
         SingleMovie,
-        SearchSlice
+        SearchSlice,
+        ChangeLanguageSlice
     }
 })
 
