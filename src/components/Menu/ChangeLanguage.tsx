@@ -27,13 +27,17 @@ const ChangeLanguage: React.FC<LangProps> = ({
         <img src={selectLang} alt="selectedLangueage" />
       </div>
       {openLang && (
-        <ul className={style.change_ul}>
-          {langauge.map((i: langaugeItem) => (
-            <li className={selectLang === i.img ? style.acive : ''} onClick={() => changeIdLanguage(i)} key={i.id}>
-              <img src={i.img} alt="imgLanguage" />
-            </li>
-          ))}
-        </ul>
+          <ul className={style.change_ul}>
+            {langauge.map((i: langaugeItem) => (
+              <li
+                className={selectLang === i.img ? style.acive : ""}
+                onClick={() => changeIdLanguage(i)}
+                key={i.id}
+              >
+                <img src={i.img} alt="imgLanguage" />
+              </li>
+            ))}
+          </ul>
       )}
     </div>
   );

@@ -1,32 +1,23 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addMovie } from "../redux/PopularFilmSlice";
+import { addMovie, setStatusPopular } from "../redux/PopularFilmSlice";
 import HomeCarousel from "../components/Home/HomeCarousel";
 import { useSelector } from "react-redux";
 import { setMovie } from "../redux/PopularFilmSlice";
 import CardPopular from "../components/CardPopular/CardPopular";
 import { selectedLanguage } from "../redux/ChangeLanguageSlice";
+import { fetchFilms } from "../redux/asyncActions";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const [Loading, setLoading] = useState(true);
-  const language = useSelector(selectedLanguage)
+  const language = useSelector(selectedLanguage);
+  const status = useSelector(setStatusPopular);
 
   useEffect(() => {
-    const getApi = async () => {
-      try {
-        setLoading(true)
-        const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=${language}`
-        );
-        dispatch(addMovie(data.results));
-        setLoading(false)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getApi();
+    const movieCateg = "popular";
+    // @ts-ignore: Unreachable code error
+    dispatch(fetchFilms({ language, movieCateg }));
   }, [dispatch, language]);
 
   const movieRedux = useSelector(setMovie);
@@ -34,7 +25,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <HomeCarousel movie={movieRedux} />
-      <CardPopular title="POPULAR" movieRedux={movieRedux} Loading={Loading}/>
+      <CardPopular title="POPULAR" movieRedux={movieRedux} Loading={status} />
     </div>
   );
 };

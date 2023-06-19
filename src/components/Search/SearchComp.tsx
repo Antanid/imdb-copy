@@ -22,12 +22,12 @@ import { selectedLanguage } from "../../redux/ChangeLanguageSlice";
 const SearchComp: React.FC = () => {
   const [input, setInput] = useState("");
   const [searh, setSearch] = useState(false);
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState('error');
   const page = useSelector(setPageNum);
   const dispatch = useDispatch();
-  const language = useSelector(selectedLanguage)
+  const language = useSelector(selectedLanguage);
   useEffect(() => {
-    setLoading(true);
+    setLoading('error');
     const getApi = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/search/movie?query=${
@@ -38,15 +38,20 @@ const SearchComp: React.FC = () => {
       dispatch(setPage(data.page));
       dispatch(setTotalPage(data.total_pages));
     };
-    setLoading(false);
-    getApi();
-  }, [searh, page, dispatch, language]);
+    setLoading("s");
+    const test = setTimeout(() => {
+      getApi();
+    }, 1000);
+    return () => {
+      clearTimeout(test);
+    };
+  }, [input, searh, page, dispatch, language]);
   const onChangeInput = (e: React.ChangeEvent<any>) => {
     setInput(e.target.value);
     e.preventDefault();
   };
   const onSearch = () => {
-    dispatch(setPage(1))
+    dispatch(setPage(1));
     setSearch(!searh);
   };
   const onNextPage = () => {
@@ -58,7 +63,7 @@ const SearchComp: React.FC = () => {
   const onKeySearch = (event: any) => {
     if (event.key === "Enter") {
       onSearch();
-      dispatch(setPage(1))
+      dispatch(setPage(1));
     }
   };
   const data = useSelector(setResult);
@@ -74,7 +79,7 @@ const SearchComp: React.FC = () => {
         onKeySearch={onKeySearch}
       />
 
-      <CardPopular movieRedux={data} title="SEARCH" Loading={Loading} />
+      <CardPopular movieRedux={data} title="SEARCH" Loading={'success'} />
       <ButtonControl onNextPage={onNextPage} page={page} onPrevPage={onPrevPage} />
       <TotalPage totalPageNum={totalPageNum} />
     </div>

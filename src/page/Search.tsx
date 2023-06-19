@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchComp from '../components/Search.tsx/SearchComp'
+import SearchComp from '../components/Search/SearchComp'
 
 const Search: React.FC = () => {
   return (

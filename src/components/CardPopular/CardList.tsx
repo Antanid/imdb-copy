@@ -9,10 +9,10 @@ type CardlistProps = {
   date: string;
   vote: number;
   overview: string;
-  Loading: boolean;
+  Loading: string;
   onAddFilm: (id: number) => void;
   id: number;
-  NoImg: string
+  NoImg: string;
 };
 
 const CardList: React.FC<CardlistProps> = ({
@@ -24,40 +24,39 @@ const CardList: React.FC<CardlistProps> = ({
   Loading,
   onAddFilm,
   id,
-  NoImg
+  NoImg,
 }) => {
   return (
     <>
-      {Loading ? (
-        <Skeleton height={300} width={200} />
-      ) : (
+      {Loading === 'success' ? (
         <Link to={`/movies/${id}`}>
-        <div className={style.cards} onClick={() => onAddFilm(id)}>
-          <img
-            className={style.card_img}
-            src={poster ? `https://image.tmdb.org/t/p/original${poster}` : NoImg}
-            alt="poster_img"
-          />
+          <div className={style.cards} onClick={() => onAddFilm(id)}>
+            <img
+              className={style.card_img}
+              src={poster ? `https://image.tmdb.org/t/p/original${poster}` : NoImg}
+              alt="poster_img"
+            />
 
-          <div className={style.cards_overlay}>
-            <div className={style.title}>
-              <p className={style.title_p}>{title}</p>
+            <div className={style.cards_overlay}>
+              <div className={style.title}>
+                <p className={style.title_p}>{title}</p>
+              </div>
+              <div className={style.data_vote}>
+                <p className={style.data}>{date}</p>
+                <p className={style.vote}>
+                  {vote} <span> ★</span>
+                </p>
+              </div>
+              <div className={style.description}>
+                <p>{overview.slice(0, 118) + "..."}</p>
+              </div>
             </div>
-            <div className={style.data_vote}>
-              <p className={style.data}>{date}</p>
-              <p className={style.vote}>
-                {vote} <span> ★</span>
-              </p>
-            </div>
-            <div className={style.description}>
-              <p>{overview.slice(0, 118) + "..."}</p>
-            </div>
-          </div>
           </div>
         </Link>
-      
+      ) : (
+        <Skeleton height={300} width={200} />
       )}
-</>
+    </>
   );
 };
 

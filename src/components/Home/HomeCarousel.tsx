@@ -1,4 +1,5 @@
-import React from "react";
+import { Spin } from "antd";
+import React, { Suspense } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
@@ -43,45 +44,49 @@ export type itemMapProps = {
 const HomeCarousel: React.FC<CarouselProps> = ({ movie }) => {
   return (
     <div className={style.carousel_wrapper}>
-      <Carousel
-        showThumbs={false}
-        autoPlay={true}
-        infiniteLoop={true}
-        showStatus={false}
-        transitionTime={3}
-      >
-        {movie &&
-          movie.map((item: itemMapProps) => (
-            <Link to={`/movies/${item.id}`}>
-              <div className={style.poster_link} key={item.id}>
-                <div className={style.carousel_img}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
-                    alt="film-Background"
-                  />
-                </div>
+      {movie && (
+        <Suspense fallback={<Spin />}>
+          <Carousel
+            showThumbs={false}
+            autoPlay={true}
+            infiniteLoop={true}
+            showStatus={false}
+            transitionTime={3}
+          >
+            {movie &&
+              movie.map((item: itemMapProps) => (
+                <Link to={`/movies/${item.id}`}>
+                  <div className={style.poster_link} key={item.id}>
+                    <div className={style.carousel_img}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+                        alt="film-Background"
+                      />
+                    </div>
 
-                <div className={style.overlay}>
-                  <div className={style.poster_text}>
-                    <p className={style.title}>{item.title}</p>
-                  </div>
+                    <div className={style.overlay}>
+                      <div className={style.poster_text}>
+                        <p className={style.title}>{item.title}</p>
+                      </div>
 
-                  <div className={style.vote_data}>
-                    <p className={style.data}>{item.release_date}</p>
-                    <p className={style.vote}>
-                      {item.vote_average}
-                      <span> ★</span>
-                    </p>
-                  </div>
+                      <div className={style.vote_data}>
+                        <p className={style.data}>{item.release_date}</p>
+                        <p className={style.vote}>
+                          {item.vote_average}
+                          <span> ★</span>
+                        </p>
+                      </div>
 
-                  <div className={style.description}>
-                    <p>{item.overview}</p>
+                      <div className={style.description}>
+                        <p>{item.overview}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-      </Carousel>
+                </Link>
+              ))}
+          </Carousel>
+        </Suspense>
+      )}
     </div>
   );
 };
