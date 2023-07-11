@@ -15,7 +15,7 @@ type MovieRightProps = {
   overview: string;
 };
 
-const MovieRight: React.FC <MovieRightProps> = ({
+const MovieRight: React.FC<MovieRightProps> = ({
   title,
   tagline,
   vote_average,

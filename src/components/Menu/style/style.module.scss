@@ -5,6 +5,7 @@
 
     .img_logo {
         padding-left: 30px;
+
         img {
             width: 80px;
         }
@@ -79,6 +80,55 @@
             }
         }
     }
+
+    .categoriesBlock {
+        .mainSelected {
+            cursor: pointer;
+            width: 120px;
+            p {
+                padding: 10px 20px;
+                position: relative;
+                margin-bottom: 5px;
+
+                &:hover:after {
+                    width: 100%;
+                    left: 0;
+                }
+
+                &:after {
+                    background: none repeat scroll 0 0 transparent;
+                    bottom: 0;
+                    content: "";
+                    display: block;
+                    height: 2px;
+                    left: 50%;
+                    position: absolute;
+                    background: #fff;
+                    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                    width: 0;
+                }
+            }
+        }
+
+        .allCatUl {
+            display: flex;
+            flex-wrap: wrap;
+            a{
+                text-decoration: none;
+                color: #ffffff;
+            li {
+                border: 1px solid #ffffff;
+                border-radius: 7px;
+                padding: 8px;
+                margin: 7px 7px;
+                cursor: pointer;
+                text-decoration: none;
+                list-style: none;
+            }
+        }
+        }
+    }
+
 }
 
 @media (max-width: 580px) {
@@ -94,7 +144,8 @@
             position: fixed;
             right: 0;
             margin-right: 10px;
-            img{
+
+            img {
                 width: 30px;
             }
         }
@@ -121,6 +172,7 @@
             flex-wrap: wrap;
             transform: translateX(-100vh);
             z-index: 999;
+
             a {
                 color: #fff;
                 text-decoration: none;
@@ -140,14 +192,15 @@
 
         .changeLang {
             display: flex;
-           align-items: center;
+            align-items: center;
             z-index: 999;
             margin-right: 60px;
-           position: fixed;
-            .change_ul{
+            position: fixed;
+
+            .change_ul {
                 display: contents;
                 position: relative;
-            }      
+            }
         }
     }
 }

@@ -1,10 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardPopular from "../components/CardPopular/CardPopular";
 import { fetchFilms } from "../redux/asyncActions";
 import { selectedLanguage } from "../redux/ChangeLanguageSlice";
-import { addTopRated, setTopRated, setTopRatedStatus } from "../redux/TopRatedSlice";
+import { setTopRated, setTopRatedStatus } from "../redux/TopRatedSlice";
 
 const TopRated = () => {
   const dispatch = useDispatch();

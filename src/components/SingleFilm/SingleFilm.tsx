@@ -7,6 +7,7 @@ import PosterImg from "./PosterImg";
 import style from "./style/style.module.scss";
 import TextProduction from "./TextProduction";
 import linkImg from "../../assets/img/linkImg.png";
+import TrailerPage from "./TrailerPage";
 
 type SingleFilmProps = {
   backdrop_path: string;
@@ -32,6 +33,7 @@ type SingleFilmProps = {
   }[];
   backMovieImg: string;
   noImg: string;
+  keyTrailer: string | null;
 };
 
 const SingleFilm: React.FC<SingleFilmProps> = ({
@@ -50,6 +52,7 @@ const SingleFilm: React.FC<SingleFilmProps> = ({
   production_companies,
   backMovieImg,
   noImg,
+  keyTrailer
 }) => {
   return (
     <div className={style.movie}>
@@ -68,6 +71,7 @@ const SingleFilm: React.FC<SingleFilmProps> = ({
           title={title}
         />
       </div>
+      <TrailerPage keyTrailer={keyTrailer}/>
       <MovieLinks
         linkImg={linkImg}
         IMDbText="IMDb"

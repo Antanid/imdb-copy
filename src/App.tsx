@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router";
 import "./App.css";
 import Menu from "./components/Menu/Menu";
+import CategoriesPage from "./page/CategoriesPage";
 import Home from "./page/Home";
 import Movie from "./page/Movie";
 import Popular from "./page/Popular/Popular";
 import Search from "./page/Search";
 import TopRated from "./page/TopRated";
 import Upcoming from "./page/Upcoming";
-
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
         <Route path="top_rated" element={<TopRated />} />
         <Route path="movies/:id" element={<Movie />} />
         <Route path="search" element={<Search />} />
+        <Route path="categories" element={<CategoriesPage />} />
       </Routes>
     </div>
   );

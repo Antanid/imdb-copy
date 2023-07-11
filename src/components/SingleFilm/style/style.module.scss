@@ -40,7 +40,7 @@
             color: white;
             display: flex;
             flex-direction: column;
-       
+
             justify-content: space-between;
 
             .movie_detailInfoTop {
@@ -101,7 +101,7 @@
     }
 
     .movie_links {
-       margin-bottom: 30px;
+        margin-bottom: 30px;
         display: flex;
         justify-content: space-between;
         width: 75%;
@@ -127,8 +127,11 @@
                 border-radius: 20px;
                 cursor: pointer;
                 width: 150px;
-                background-color: rgb(255, 0, 0);
-
+                background-color: rgb(246, 92, 92);
+                &:hover{
+                    background-color: rgb(255, 0, 0);
+                    transition: background-color 0.2s ease;
+                }
 
                 img {
                     padding-left: 10px;
@@ -192,6 +195,27 @@
         }
     }
 
+
+    .trailerDiv {
+        position: relative;
+        overflow: hidden;
+        width: 80%;
+        padding-top: 40.25%;
+        margin-bottom: 100px;
+        border: 1px solid rgb(163, 158, 158);
+        border-radius: 10px;
+        .iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+
     @media (max-width: 900px) {
         .movie_detail {
             display: block;
@@ -210,36 +234,40 @@
         .movie_links {
             flex-direction: column;
             align-items: center;
-        
-            a{
+
+            a {
                 padding-top: 7px;
             }
         }
     }
+
     @media (max-width: 900px) {
-        .movie_production{
+        .movie_production {
             flex-direction: column;
             align-items: center;
         }
     }
+
     @media (max-width: 460px) {
         .movie_links {
             flex-direction: column;
             align-items: center;
-            a{
+
+            a {
                 padding-top: 7px;
             }
         }
     }
+
     @media (max-width: 420px) {
         .movie_links {
             flex-direction: column;
             align-items: center;
-          
-            a{
+
+            a {
                 padding-top: 7px;
             }
         }
     }
- 
+
 }

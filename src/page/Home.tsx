@@ -1,7 +1,6 @@
-import axios from "axios";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addMovie, setStatusPopular } from "../redux/PopularFilmSlice";
+import { setStatusPopular } from "../redux/PopularFilmSlice";
 import HomeCarousel from "../components/Home/HomeCarousel";
 import { useSelector } from "react-redux";
 import { setMovie } from "../redux/PopularFilmSlice";

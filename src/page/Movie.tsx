@@ -1,35 +1,57 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { PuffLoader } from "react-spinners";
 import SingleFilm from "../components/SingleFilm/SingleFilm";
-import { addSingleFilm, setSingleMovie } from "../redux/SingleMovieSlice";
+import {
+  setSingleMovie,
+  setSingleStatus,
+} from "../redux/SingleMovieSlice";
 import backMovieImg from "../assets/img/back_movie.jpeg";
 import noImg from "../assets/img/No-Image.png";
 import { selectedLanguage } from "../redux/ChangeLanguageSlice";
+import { fetchSingleMovie } from "../redux/asyncSingleFilm";
+import { Spin } from "antd";
+import { fetchYoutubeTrailer } from "../redux/YouTubeKey/asyncYouTubeKey";
+import { setYouTubeKey } from "../redux/YouTubeKey/YouTubeSlice";
+
+type singleFilmTypes = {
+  backdrop_path: string;
+  poster_path: string;
+  title: string;
+  tagline: string;
+  vote_average: string;
+  vote_count: string;
+  runtime: string;
+  release_date: string;
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  overview: string;
+  homepage: string;
+  imdb_id: string;
+  production_companies: {
+    id: number;
+    logo_path: string;
+    name: string;
+    original_country: string;
+  }[];
+  backMovieImg: string;
+}[];
 
 const Movie = () => {
   const { id } = useParams();
-  const [Loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const language = useSelector(selectedLanguage)
+  const language = useSelector(selectedLanguage);
+  const status = useSelector(setSingleStatus);
+  const keyTrailer = useSelector(setYouTubeKey);
 
   useEffect(() => {
-    const getApi = async (id: string | undefined) => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=${language}`
-        );
-        dispatch(addSingleFilm(data));
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getApi(id);
+    // @ts-ignore: Unreachable code error
+    dispatch(fetchSingleMovie({ id, language }));
+    // @ts-ignore: Unreachable code error
+    dispatch(fetchYoutubeTrailer({ id, language }));
   }, [dispatch, id, language]);
   const {
     backdrop_path,
@@ -45,29 +67,32 @@ const Movie = () => {
     homepage,
     imdb_id,
     production_companies,
-  }: any = useSelector(setSingleMovie);
+  }: singleFilmTypes | any = useSelector(setSingleMovie);
   return (
     <div>
-      {Loading ? (
-        <PuffLoader size={120} color="#fffff" />
+      {status === "success" ? (
+        <Suspense fallback={<Spin />}>
+          <SingleFilm
+            keyTrailer={keyTrailer}
+            noImg={noImg}
+            backMovieImg={backMovieImg}
+            production_companies={production_companies}
+            imdb_id={imdb_id}
+            homepage={homepage}
+            overview={overview}
+            genres={genres}
+            release_date={release_date}
+            runtime={runtime}
+            vote_count={vote_count}
+            vote_average={vote_average}
+            tagline={tagline}
+            title={title}
+            poster_path={poster_path}
+            backdrop_path={backdrop_path}
+          />
+        </Suspense>
       ) : (
-        <SingleFilm
-          noImg={noImg}
-          backMovieImg={backMovieImg}
-          production_companies={production_companies}
-          imdb_id={imdb_id}
-          homepage={homepage}
-          overview={overview}
-          genres={genres}
-          release_date={release_date}
-          runtime={runtime}
-          vote_count={vote_count}
-          vote_average={vote_average}
-          tagline={tagline}
-          title={title}
-          poster_path={poster_path}
-          backdrop_path={backdrop_path}
-        />
+        <PuffLoader size={120} color="#fffff" />
       )}
     </div>
   );
