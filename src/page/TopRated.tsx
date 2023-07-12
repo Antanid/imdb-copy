@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardPopular from "../components/CardPopular/CardPopular";
-import { fetchFilms } from "../redux/asyncActions";
+import { fetchFilms } from "../redux/MenuLiCat/asyncActions";
 import { selectedLanguage } from "../redux/ChangeLanguageSlice";
-import { setTopRated, setTopRatedStatus } from "../redux/TopRatedSlice";
+import { setTopRated, setTopRatedStatus } from "../redux/MenuLiCat/TopRatedSlice";
 
 const TopRated = () => {
   const dispatch = useDispatch();

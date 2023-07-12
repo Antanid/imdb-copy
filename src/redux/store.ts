@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from 'react-redux'
-import PopularFilm from './PopularFilmSlice'
-import UpcomingFilm from "./UpcomingFilmSlice";
-import TopRated from './TopRatedSlice';
-import SingleMovie from './SingleMovieSlice';
-import SearchSlice from './SearchSlice';
+import PopularFilm from './MenuLiCat/PopularFilmSlice'
+import UpcomingFilm from "./MenuLiCat/UpcomingFilmSlice";
+import TopRated from './MenuLiCat/TopRatedSlice';
+import SingleMovie from './SingleFilm/SingleMovieSlice';
+import SearchSlice from './Search/SearchSlice';
 import ChangeLanguageSlice from './ChangeLanguageSlice';
 import YouTubeSlice from './YouTubeKey/YouTubeSlice';
 import CategorySlice from './Category/CategorySlice'

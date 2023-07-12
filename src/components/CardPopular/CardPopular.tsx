@@ -5,7 +5,7 @@ import CardTitle from "./CardTitle";
 import style from "./style/style.module.scss";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch } from "react-redux";
-import { addID } from "../../redux/SingleMovieSlice";
+import { addID } from "../../redux/SingleFilm/SingleMovieSlice";
 import NoImg from "../../assets/img/No-Image.png";
 import { Spin } from "antd";
 

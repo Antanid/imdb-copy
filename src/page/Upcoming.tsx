@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardPopular from "../components/CardPopular/CardPopular";
-import { fetchFilms } from "../redux/asyncActions";
+import { fetchFilms } from "../redux/MenuLiCat/asyncActions";
 import { selectedLanguage } from "../redux/ChangeLanguageSlice";
-import { setUpcomingMovie, setUpcomingStatus } from "../redux/UpcomingFilmSlice";
+import { setUpcomingMovie, setUpcomingStatus } from "../redux/MenuLiCat/UpcomingFilmSlice";
 
 const Upcoming: React.FC = () => {
   const dispatch = useDispatch();

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setStatusPopular } from "../redux/PopularFilmSlice";
+import { setStatusPopular } from "../redux/MenuLiCat/PopularFilmSlice";
 import HomeCarousel from "../components/Home/HomeCarousel";
 import { useSelector } from "react-redux";
-import { setMovie } from "../redux/PopularFilmSlice";
+import { setMovie } from "../redux/MenuLiCat/PopularFilmSlice";
 import CardPopular from "../components/CardPopular/CardPopular";
 import { selectedLanguage } from "../redux/ChangeLanguageSlice";
-import { fetchFilms } from "../redux/asyncActions";
+import { fetchFilms } from "../redux/MenuLiCat/asyncActions";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();

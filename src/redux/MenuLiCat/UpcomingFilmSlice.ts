@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchFilms } from "./asyncActions";
-import { RootState } from "./store";
-import { Status } from "./types";
+import { RootState } from "../store";
+import { Status } from "../types";
 
 
 const initialState = {

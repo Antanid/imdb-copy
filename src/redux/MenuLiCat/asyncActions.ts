@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FetchType } from "./types";
+import { FetchType } from "../types";
 
 export const fetchFilms = createAsyncThunk("movieSlice/fetchFilm", async (params: FetchType) => {
     const { movieCateg, language } = params;

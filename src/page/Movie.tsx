@@ -6,11 +6,11 @@ import SingleFilm from "../components/SingleFilm/SingleFilm";
 import {
   setSingleMovie,
   setSingleStatus,
-} from "../redux/SingleMovieSlice";
+} from "../redux/SingleFilm/SingleMovieSlice";
 import backMovieImg from "../assets/img/back_movie.jpeg";
 import noImg from "../assets/img/No-Image.png";
 import { selectedLanguage } from "../redux/ChangeLanguageSlice";
-import { fetchSingleMovie } from "../redux/asyncSingleFilm";
+import { fetchSingleMovie } from "../redux/SingleFilm/asyncSingleFilm";
 import { Spin } from "antd";
 import { fetchYoutubeTrailer } from "../redux/YouTubeKey/asyncYouTubeKey";
 import { setYouTubeKey } from "../redux/YouTubeKey/YouTubeSlice";

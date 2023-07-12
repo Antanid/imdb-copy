@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardPopular from "../../components/CardPopular/CardPopular";
-import { setMovie, setStatusPopular } from "../../redux/PopularFilmSlice";
+import { setMovie, setStatusPopular } from "../../redux/MenuLiCat/PopularFilmSlice";
 import { selectedLanguage } from "../../redux/ChangeLanguageSlice";
-import { fetchFilms } from "../../redux/asyncActions";
+import { fetchFilms } from "../../redux/MenuLiCat/asyncActions";
 
 const Popular = () => {
   const status = useSelector(setStatusPopular);

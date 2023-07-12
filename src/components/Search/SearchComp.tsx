@@ -1,16 +1,14 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   nextPage,
   prevPage,
-  searchResult,
   setPage,
   setPageNum,
   setResult,
-  setTotalPage,
+  setStatusSearch,
   totalPage,
-} from "../../redux/SearchSlice";
+} from "../../redux/Search/SearchSlice";
 import CardPopular from "../CardPopular/CardPopular";
 import searchImg from "../../assets/img/search.png";
 import style from "./style/style.module.scss";
@@ -18,6 +16,7 @@ import InputSearch from "./InputSearch";
 import ButtonControl from "./ButtonControl";
 import TotalPage from "./TotalPage";
 import { selectedLanguage } from "../../redux/ChangeLanguageSlice";
+import { fetchSearchFilms } from "../../redux/Search/asyncSearch";
 
 const SearchComp: React.FC = () => {
   const [input, setInput] = useState("");
@@ -26,17 +25,12 @@ const SearchComp: React.FC = () => {
   const page = useSelector(setPageNum);
   const dispatch = useDispatch();
   const language = useSelector(selectedLanguage);
+  const statusSearch = useSelector(setStatusSearch)
   useEffect(() => {
     setLoading('error');
     const getApi = async () => {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?query=${
-          input ? input : "Batman"
-        }&api_key=4e44d9029b1270a757cddc766a1bcb63&language=${language}&page=${page}`
-      );
-      dispatch(searchResult(data.results));
-      dispatch(setPage(data.page));
-      dispatch(setTotalPage(data.total_pages));
+    // @ts-ignore: Unreachable code error
+    dispatch(fetchSearchFilms({input, language, page}))
     };
     setLoading("s");
     const test = setTimeout(() => {
@@ -79,7 +73,7 @@ const SearchComp: React.FC = () => {
         onKeySearch={onKeySearch}
       />
 
-      <CardPopular movieRedux={data} title="SEARCH" Loading={'success'} />
+      <CardPopular movieRedux={data} title="SEARCH" Loading={statusSearch} />
       <ButtonControl onNextPage={onNextPage} page={page} onPrevPage={onPrevPage} />
       <TotalPage totalPageNum={totalPageNum} />
     </div>
