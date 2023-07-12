@@ -170,6 +170,7 @@ const Menu: React.FC = () => {
       <MenuImg IMDB_logo={IMDB_logo} />
 
       <MenuLi
+      setCategorOpen={setCategorOpen}
         categorOpen={categorOpen}
         closeBurger={closeBurger}
         burgerOpen={burgerOpen}

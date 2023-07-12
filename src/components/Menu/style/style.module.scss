@@ -15,6 +15,11 @@
         display: none;
     }
 
+    .menuWrap{
+       display: none;
+   
+}
+.menuClose{
     .menu_ul {
         display: flex;
         align-items: center;
@@ -22,7 +27,6 @@
         a {
             color: #fff;
             text-decoration: none;
-
             li {
                 display: table-cell;
                 position: relative;
@@ -49,6 +53,7 @@
             }
         }
     }
+}
 
     .changeLang {
         position: absolute;
@@ -191,15 +196,21 @@
         }
 
         .changeLang {
-            display: flex;
+            display: block;
             align-items: center;
-            z-index: 999;
+            z-index: 99;
             margin-right: 60px;
-            position: fixed;
+            position: inherit;
 
             .change_ul {
                 display: contents;
                 position: relative;
+            }
+        }
+        .categoriesBlock{
+            .allCatUl{
+                display: block;
+                position: inherit;
             }
         }
     }

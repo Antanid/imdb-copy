@@ -14,21 +14,32 @@ type MenuLiProps = {
   closeBurger: () => void;
   closeImg: string;
   categorOpen: boolean;
+  setCategorOpen: (arg0: boolean) => void;
 };
 
-const MenuLi: React.FC<MenuLiProps> = ({ menuLi, iconBurger, Open, burgerOpen, closeImg, closeBurger, categorOpen }) => {
+const MenuLi: React.FC<MenuLiProps> = ({
+  menuLi,
+  iconBurger,
+  Open,
+  burgerOpen,
+  closeImg,
+  closeBurger,
+  categorOpen,
+  setCategorOpen,
+}) => {
   return (
     <div>
-      <BurgerIcon burgerOpen={burgerOpen} iconBurger={Open ? closeImg : iconBurger} />
-
-      <ul className={Open ? style.menu_ul_burger : style.menu_ul}>
-        {menuLi.map((item, index) => (
-          <Link key={index} to={item.path}>
-            <li onClick={closeBurger}>{item.title}</li>
-          </Link>
-        ))}
-      </ul>
+      <BurgerIcon setCategorOpen={setCategorOpen} burgerOpen={burgerOpen} iconBurger={Open ? closeImg : iconBurger} />
+      <div className={categorOpen ? style.menuWrap : style.menuClose}>
+        <ul className={Open ? style.menu_ul_burger : style.menu_ul}>
+          {menuLi.map((item, index) => (
+            <Link key={index} to={item.path}>
+              <li onClick={closeBurger}>{item.title}</li>
+            </Link>
+          ))}
+        </ul>
       </div>
+    </div>
   );
 };
 
