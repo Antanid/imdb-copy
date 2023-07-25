@@ -32,8 +32,8 @@ const MenuLi: React.FC<MenuLiProps> = ({
       <BurgerIcon setCategorOpen={setCategorOpen} burgerOpen={burgerOpen} iconBurger={Open ? closeImg : iconBurger} />
       <div className={categorOpen ? style.menuWrap : style.menuClose}>
         <ul className={Open ? style.menu_ul_burger : style.menu_ul}>
-          {menuLi.map((item, index) => (
-            <Link key={index} to={item.path}>
+          {menuLi.map((item) => (
+            <Link key={item.path} to={item.path}>
               <li onClick={closeBurger}>{item.title}</li>
             </Link>
           ))}

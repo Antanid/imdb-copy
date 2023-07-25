@@ -6,7 +6,7 @@ import {
   setPage,
   setPageNum,
   setResult,
-  setStatusSearch,
+  startPage,
   totalPage,
 } from "../../redux/Search/SearchSlice";
 import CardPopular from "../CardPopular/CardPopular";
@@ -17,22 +17,24 @@ import ButtonControl from "./ButtonControl";
 import TotalPage from "./TotalPage";
 import { selectedLanguage } from "../../redux/ChangeLanguageSlice";
 import { fetchSearchFilms } from "../../redux/Search/asyncSearch";
+import Loader from "../Loader/Loader";
 
 const SearchComp: React.FC = () => {
   const [input, setInput] = useState("");
   const [searh, setSearch] = useState(false);
-  const [Loading, setLoading] = useState('error');
+  const [loading, setLoading] = useState(true);
   const page = useSelector(setPageNum);
   const dispatch = useDispatch();
   const language = useSelector(selectedLanguage);
-  const statusSearch = useSelector(setStatusSearch)
+console.log('rerender')
   useEffect(() => {
-    setLoading('error');
+    setLoading(true)
     const getApi = async () => {
-    // @ts-ignore: Unreachable code error
-    dispatch(fetchSearchFilms({input, language, page}))
+      setLoading(false);
+      // @ts-ignore: Unreachable code error
+      await dispatch(fetchSearchFilms({ input, language, page }));
+      await dispatch(startPage())
     };
-    setLoading("s");
     const test = setTimeout(() => {
       getApi();
     }, 1000);
@@ -62,21 +64,27 @@ const SearchComp: React.FC = () => {
   };
   const data = useSelector(setResult);
   const totalPageNum = useSelector(totalPage);
-
   return (
-    <div className={style.search_wrapper}>
-      <InputSearch
-        searchImg={searchImg}
-        onSearch={onSearch}
-        onChangeInput={onChangeInput}
-        input={input}
-        onKeySearch={onKeySearch}
-      />
-
-      <CardPopular movieRedux={data} title="SEARCH" Loading={statusSearch} />
-      <ButtonControl onNextPage={onNextPage} page={page} onPrevPage={onPrevPage} />
-      <TotalPage totalPageNum={totalPageNum} />
-    </div>
+  
+      <div className={style.search_wrapper}>
+        <InputSearch
+          searchImg={searchImg}
+          onSearch={onSearch}
+          onChangeInput={onChangeInput}
+          input={input}
+          onKeySearch={onKeySearch}
+        />
+      
+      {loading === false ? (
+        <div className={style.search_wrapper}>
+          <CardPopular movieRedux={data} title="SEARCH" Loading={loading} />
+          <ButtonControl onNextPage={onNextPage} page={page} onPrevPage={onPrevPage} />
+          <TotalPage totalPageNum={totalPageNum} />
+        </div>
+      ) : (
+        <Loader />
+      )}
+   </div>
   );
 };
 

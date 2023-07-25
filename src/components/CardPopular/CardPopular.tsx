@@ -7,7 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch } from "react-redux";
 import { addID } from "../../redux/SingleFilm/SingleMovieSlice";
 import NoImg from "../../assets/img/No-Image.png";
-import { Spin } from "antd";
+import Loader from "../Loader/Loader";
 
 type PopularTypeProps = {
   movieRedux: {
@@ -27,7 +27,7 @@ type PopularTypeProps = {
     vote_count: number;
   }[];
   title: string;
-  Loading: string;
+  Loading: boolean;
 };
 
 const CardPopular: React.FC<PopularTypeProps> = ({ movieRedux, title, Loading }) => {
@@ -37,8 +37,10 @@ const CardPopular: React.FC<PopularTypeProps> = ({ movieRedux, title, Loading })
   };
   return (
     <div className={style.movieList}>
-      {Loading === 'success' ? (
-        <Suspense fallback={<Spin />}>
+      {Loading === true ? (
+        <Loader />
+      ) : (
+        <Suspense>
           <CardTitle title={title} />
           <div className={style.list_cards}>
             {movieRedux.map((item: itemMapProps) => (
@@ -47,7 +49,6 @@ const CardPopular: React.FC<PopularTypeProps> = ({ movieRedux, title, Loading })
                 key={item.id}
                 onAddFilm={onAddFilm}
                 id={item.id}
-                Loading={Loading}
                 poster={item.poster_path}
                 title={item.title}
                 date={item.release_date}
@@ -56,8 +57,8 @@ const CardPopular: React.FC<PopularTypeProps> = ({ movieRedux, title, Loading })
               />
             ))}
           </div>
-        </Suspense> 
-      ) : null}
+        </Suspense>
+      )}
     </div>
   );
 };

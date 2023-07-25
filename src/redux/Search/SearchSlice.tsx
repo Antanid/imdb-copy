@@ -27,6 +27,11 @@ const SearchSlice = createSlice({
         state.page--;
       }
     },
+    startPage(state){
+      if(state.page > state.totalPage){
+        state.page = 1
+      }
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchSearchFilms.pending, (state) => {
@@ -36,7 +41,7 @@ const SearchSlice = createSlice({
       builder.addCase(fetchSearchFilms.fulfilled, (state, action: any) => {
         state.movieList = action.payload.results;
         state.page = action.payload.page;
-        state.totalPage = action.payload.totalPage;
+        state.totalPage = action.payload.total_pages;
         state.status = Status.SUCCESS;
       });
       builder.addCase(fetchSearchFilms.rejected, (state) => {
@@ -46,7 +51,7 @@ const SearchSlice = createSlice({
 }
 });
 
-export const { setPage, nextPage, prevPage } = SearchSlice.actions;
+export const { setPage, nextPage, prevPage, startPage } = SearchSlice.actions;
 export const setResult = (state: RootState) => state.SearchSlice.movieList;
 export const setPageNum = (state: RootState) => state.SearchSlice.page;
 export const totalPage = (state: RootState) => state.SearchSlice.totalPage;

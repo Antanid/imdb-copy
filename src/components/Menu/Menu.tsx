@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import IMDB_logo from "../../assets/img/IMDB_Logo.png";
 import MenuImg from "./MenuImg";
 import MenuLi from "./MenuLi";
@@ -22,6 +22,7 @@ export type langaugeItem = {
 };
 
 const Menu: React.FC = () => {
+  
   const dispatch = useDispatch();
   const [menuLi] = useState([
     {
@@ -162,9 +163,9 @@ const Menu: React.FC = () => {
   const burgerOpen = () => {
     isOpen((prev) => !prev);
   };
-  const closeBurger = () => {
-    isOpen(false);
-  };
+  const closeBurger = useCallback(() => {
+      isOpen(false);   
+  }, [])
   return (
     <div className={style.menu_wrapper}>
       <MenuImg IMDB_logo={IMDB_logo} />

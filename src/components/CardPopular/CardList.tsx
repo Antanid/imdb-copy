@@ -1,5 +1,4 @@
 import React from "react";
-import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import style from "./style/style.module.scss";
 
@@ -9,7 +8,6 @@ type CardlistProps = {
   date: string;
   vote: number;
   overview: string;
-  Loading: string;
   onAddFilm: (id: number) => void;
   id: number;
   NoImg: string;
@@ -21,14 +19,12 @@ const CardList: React.FC<CardlistProps> = ({
   date,
   vote,
   overview,
-  Loading,
   onAddFilm,
   id,
   NoImg,
 }) => {
+ 
   return (
-    <>
-      {Loading === 'success' ? (
         <Link to={`/movies/${id}`}>
           <div className={style.cards} onClick={() => onAddFilm(id)}>
             <img
@@ -53,10 +49,6 @@ const CardList: React.FC<CardlistProps> = ({
             </div>
           </div>
         </Link>
-      ) : (
-        <Skeleton height={300} width={200} />
-      )}
-    </>
   );
 };
 

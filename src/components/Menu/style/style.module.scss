@@ -89,8 +89,9 @@
     .categoriesBlock {
         .mainSelected {
             cursor: pointer;
-            width: 120px;
+            width: 130px;
             p {
+                display: flex;
                 padding: 10px 20px;
                 position: relative;
                 margin-bottom: 5px;
@@ -112,7 +113,21 @@
                     transition: width 0.3s ease 0s, left 0.3s ease 0s;
                     width: 0;
                 }
+                img{
+                    width: 15px;
+                    padding-left: 4px;
+                }
+                .imgUp{
+                    padding-right: 5px;
+                    transform: rotate(180deg);
+                    transition: transform 0.3s ease-in-out;
+                }
+                .imgDown{
+                    transition: transform 0.3s ease-in-out;
+                    transform: rotate(360deg);
+                }
             }
+          
         }
 
         .allCatUl {

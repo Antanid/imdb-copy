@@ -13,7 +13,7 @@ const CompanyList: React.FC <CompanyProps> = ({production_companies}) => {
     <div className={style.movie_production}>
         {production_companies &&
           production_companies.map(({ logo_path, name }) => (
-            <div className={style.production_company}>
+            <div key={name} className={style.production_company}>
               {logo_path && name && (
                 <>
                   {" "}

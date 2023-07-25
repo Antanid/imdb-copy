@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardPopular from "../components/CardPopular/CardPopular";
+import Loader from "../components/Loader/Loader";
 import ButtonControl from "../components/Search/ButtonControl";
 import TotalPage from "../components/Search/TotalPage";
 import { fetchCategory } from "../redux/Category/asyncCategory";
@@ -9,7 +10,6 @@ import {
   onPrevCat,
   setCategoryFilm,
   setCategoryPage,
-  setCategoryStatus,
   setCategoryText,
   setCategoryTotalPage,
   setIdCategory,
@@ -19,16 +19,21 @@ import { selectedLanguage } from "../redux/ChangeLanguageSlice";
 const CategoriesPage: React.FC = () => {
   const dispatch = useDispatch();
   const filmArr = useSelector(setCategoryFilm);
-  const loading = useSelector(setCategoryStatus);
   const mainText = useSelector(setCategoryText);
   const language = useSelector(selectedLanguage);
   const idFilm = useSelector(setIdCategory);
   const totalPage = useSelector(setCategoryTotalPage);
   const isPage = useSelector(setCategoryPage);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // @ts-ignore: Unreachable code error
-    dispatch(fetchCategory({ idFilm, language, isPage }));
+    setLoading(true);
+    async function getApi() {
+      // @ts-ignore: Unreachable code error
+     await dispatch(fetchCategory({ idFilm, language, isPage }));
+      setLoading(false);
+    }
+    getApi();
   }, [language, idFilm, dispatch, isPage]);
 
   const onPrevPage = () => {
@@ -37,13 +42,20 @@ const CategoriesPage: React.FC = () => {
   const onNextPage = () => {
     dispatch(onNextCat());
   };
-
   return (
-    <div>
-      <CardPopular movieRedux={filmArr} title={mainText.toUpperCase()} Loading={loading} />
-      <ButtonControl onPrevPage={onPrevPage} onNextPage={onNextPage} page={isPage}/>
-      <TotalPage totalPageNum={totalPage}/>
-    </div>
+    <Suspense>
+      <div>
+        {loading === true ? (
+          <Loader />
+        ) : (
+          <>
+            <CardPopular movieRedux={filmArr} title={mainText.toUpperCase()} Loading={loading} />
+            <ButtonControl onPrevPage={onPrevPage} onNextPage={onNextPage} page={isPage} />
+            <TotalPage totalPageNum={totalPage} />
+          </>
+        )}
+      </div>
+    </Suspense>
   );
 };
 
