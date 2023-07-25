@@ -75,13 +75,15 @@ console.log('rerender')
           onKeySearch={onKeySearch}
         />
       
-     
+      {loading === false ? (
         <div className={style.search_wrapper}>
           <CardPopular movieRedux={data} title="SEARCH" Loading={loading} />
           <ButtonControl onNextPage={onNextPage} page={page} onPrevPage={onPrevPage} />
           <TotalPage totalPageNum={totalPageNum} />
         </div>
-      
+      ) : (
+        <Loader />
+      )}
    </div>
   );
 };
