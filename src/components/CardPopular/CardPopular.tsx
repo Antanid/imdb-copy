@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { itemMapProps } from "../Home/HomeCarousel";
 import CardList from "./CardList";
 import CardTitle from "./CardTitle";
@@ -40,7 +40,7 @@ const CardPopular: React.FC<PopularTypeProps> = ({ movieRedux, title, Loading })
       {Loading === true ? (
         <Loader />
       ) : (
-        <Suspense>
+        <>
           <CardTitle title={title} />
           <div className={style.list_cards}>
             {movieRedux.map((item: itemMapProps) => (
@@ -57,7 +57,7 @@ const CardPopular: React.FC<PopularTypeProps> = ({ movieRedux, title, Loading })
               />
             ))}
           </div>
-        </Suspense>
+        </>
       )}
     </div>
   );

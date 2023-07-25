@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import SingleFilm from "../components/SingleFilm/SingleFilm";
@@ -75,7 +75,6 @@ const Movie = () => {
       {loading === true ? (
         <Loader />
       ) : (
-        <Suspense>
         <SingleFilm
           keyTrailer={keyTrailer}
           noImg={noImg}
@@ -94,7 +93,6 @@ const Movie = () => {
           poster_path={poster_path}
           backdrop_path={backdrop_path}
         />
-        </Suspense>
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardPopular from "../components/CardPopular/CardPopular";
 import Loader from "../components/Loader/Loader";
@@ -30,7 +30,7 @@ const CategoriesPage: React.FC = () => {
     setLoading(true);
     async function getApi() {
       // @ts-ignore: Unreachable code error
-     await dispatch(fetchCategory({ idFilm, language, isPage }));
+      await dispatch(fetchCategory({ idFilm, language, isPage }));
       setLoading(false);
     }
     getApi();
@@ -43,19 +43,17 @@ const CategoriesPage: React.FC = () => {
     dispatch(onNextCat());
   };
   return (
-    <Suspense>
-      <div>
-        {loading === true ? (
-          <Loader />
-        ) : (
-          <>
-            <CardPopular movieRedux={filmArr} title={mainText.toUpperCase()} Loading={loading} />
-            <ButtonControl onPrevPage={onPrevPage} onNextPage={onNextPage} page={isPage} />
-            <TotalPage totalPageNum={totalPage} />
-          </>
-        )}
-      </div>
-    </Suspense>
+    <div>
+      {loading === true ? (
+        <Loader />
+      ) : (
+        <>
+          <CardPopular movieRedux={filmArr} title={mainText.toUpperCase()} Loading={loading} />
+          <ButtonControl onPrevPage={onPrevPage} onNextPage={onNextPage} page={isPage} />
+          <TotalPage totalPageNum={totalPage} />
+        </>
+      )}
+    </div>
   );
 };
 
